@@ -17,8 +17,7 @@ def sToint(friendsAndCash):
     return friendsAndCash
 
 
-def chang(friendsAndCash):
-    # меняем местами ключи и значения для вывода имени друга
+def chang(friendsAndCash):    # меняем местами ключи и значения для вывода имени друга
     new_dict = {value: key for key, value in friendsAndCash.items()}
     return new_dict
 
