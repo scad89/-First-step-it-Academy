@@ -17,24 +17,19 @@ def sToint(friendsAndCash):
     return friendsAndCash
 
 
-def chang(friendsAndCash):    # меняем местами ключи и значения для вывода имени друга
+def chang(friendsAndCash):    # меняем местами ключи и значения для вывода имени друга с max суммой денег
     new_dict = {value: key for key, value in friendsAndCash.items()}
     return new_dict
 
 
 def mak(new_dict):
     max_d = 0
-    for value in friendsAndCash.values():    # находим максимальное число денег
+    total = 0
+    for value in friendsAndCash.values():    # находим максимальное число денег и общее количество
+        total += value
         if value > max_d:
             max_d = value
-    return max_d
-
-
-def ttal(new_dict):
-    total = 0
-    for value in friendsAndCash.values():    # общее количество денег
-        total += value
-    return total
+    return max_d, total
 
 
 friendsAndCash = {'John': '20$', 'Dan': '35$', 'Lois': '14$', 'Doug': '144$'}
@@ -42,10 +37,9 @@ new_dict1 = {value: key for key, value in friendsAndCash.items()}
 result = minysSYM()
 result1 = sToint(result)
 result2 = chang(result1)
-result3 = mak(result2)
-result4 = ttal(result2)
+m, t = mak(result2)
 new_dict = result2
 
-print('Общая сумма на руках', result4)
-print('Самый зажиточный крестьянин', new_dict[result3])
+print('Общая сумма на руках', t)
+print('Самый зажиточный крестьянин', new_dict[m])
 print(new_dict1)
