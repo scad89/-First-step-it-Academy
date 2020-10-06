@@ -1,0 +1,542 @@
+Lecture 5
+ -----------------------Tuples and Dictionares--------------------
+ Tuples(кортежи)
+ Кортежи являются неизменяемыми списками(это основное свойство)
+ a = (1, 2, 3, 4 , 5 , 6)
+ a[0]
+ Output: 1
+ a[0] = 10 - выведет ошибку
+
+ b = tuple([1, 2, 3 , 4, 5]) - второй способ создания кортежа
+ print(b)
+ Output: (1, 2 , 3, 4, 5)
+
+ -------------Операции над tuples---------
+ friends = ('Dima', 'Dima', 'Dima')
+ print(friens)
+ Output: ('Dima', 'Dima', 'Dima')
+
+ friens.append('NewFriend')
+ Output: выведет ошибка, так как tuples неизменяемый
+
+ friends.sort()
+ Output: такая же ошибка
+
+ friends.count('Dima')
+ Output: 3- выводит количество слов 'Dima' в кортеже
+
+ friends.pop(2)
+ Output: ошибка
+
+ friends.index('Dima')
+ Output: 0
+
+ ------------------------Циклы над tuples------------------
+ for index, value in enumerate(friends):
+     print(index, value)
+
+Output:
+0 'Dima'     
+1 'Dima'
+2 'Dima'
+
+testTuple = ('test',) - создаёт кортеж с одним элементом. Запятая в конце.
+или 
+testTuple = tuple('test')
+Output: ('t', 'e', 's', 't')
+
+-------------------Причины использования Tuples-----------------
+Lst = [1, 2, 3, 4, 5, 6]
+tpl = (1, 2, 3, 4, 5, 6)
+lst.__sizeof__()
+Output: 88 - занимает больше памяти
+tpl.___sizeof__()
+Output: 72 - занимает меньше памяти, а следовательно- быстрее + неизменяемость.
+
+
+----------------------------Dictionares------------------
+По факту являются словарями и создаются либо через {}, либо через dict()
+
+my_books = {
+    "mysctic: ['first', 'second']
+    "adventure: ['first', 'second']
+}
+my_books.keys() - выводит ключи
+Output: dict_keys(['mysctic', 'adventure'])
+
+my_books(items) - выводит ключи с элементами
+Output: dict_items([('mysctic, ['first', 'second']), ('adventure', ['first', 'second'])])
+
+my_books.update({'fantastic':['first', second']}) - обновляет словарь, добавляя ключ с элементами
+
+my_books.values()- выводит все элементы dict.
+Output: dict_values(['first', 'second'], ['first', 'second'], ['first', 'second'])
+
+dic = dict.fromkeys(['key3', 'key4'])
+dic
+Output: {'key3': None, 'key4': None}
+
+dic = dict.fromkeys(['key3, 'key4'], 0) - присваивает 0 ключам. Больше присвоить значения нельзя.
+Output: {'key3': 0, 'key4': 0}
+
+dic['key5'] = 50
+dic
+Output: {'key3': 0, 'key4': 0, 'key5': 50}
+
+dic
+Output: {'key3': 0, 'key4': 0, 'key5': 50}
+dic.update({'key7': 7, 'key5': 66}) - слияние
+Output: {'key3': 0, 'key4': 0, 'key5': 66, 'key7': 7}
+
+
+-------------------------Перебор словаря----------------
+-------------Прямая итерация по ключам:
+a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+for key in a_dict:
+    print(key)
+...
+color
+fruit
+pet
+
+
+------------Перебор ключей с элементами:
+>>> for key in a_dict:
+...     print(key, '->', a_dict[key])--- a_dict[key]- выводит значение элементов
+...
+color -> blue
+fruit -> apple
+pet -> dog
+
+-------------Итерация по .items()--------------
+a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+>>> d_items = a_dict.items()
+>>> d_items  # Here d_items is a view of items
+dict_items([('color', 'blue'), ('fruit', 'apple'), ('pet', 'dog')])
+
+Представления словаря, такое как d_items, обеспечивают динамическое представление записей словаря, что означает, 
+что при изменении словаря представления отражают эти изменения.
+
+>>> for item in a_dict.items():
+...     print(item)
+...
+('color', 'blue')
+('fruit', 'apple')
+('pet', 'dog')
+
+dict.items() - являются кортежами объекта
+
+Вы можете использовать распаковку кортежей для перебора ключей и значений словаря. Для этого вам просто нужно распаковать 
+элементы каждого элемента в две разные переменные, представляющие ключ и значение:
+
+>>> for key, value in a_dict.items():
+...     print(key, '->', value)
+...
+color -> blue
+fruit -> apple
+pet -> dog
+
+-------------------Итерация через .keys()
+Если вам просто нужно работать с ключами словаря, то вы можете использовать метод .keys(), 
+который возвращает новый объект представления, содержащий ключи словаря:
+
+>>> a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+>>> keys = a_dict.keys()
+>>> keys
+dict_keys(['color', 'fruit', 'pet'])
+
+Чтобы перебрать словарь в Python с помощью .keys(), вам просто нужно вызвать .keys() в заголовке цикла for:
+
+>>> for key in a_dict.keys():
+...     print(key)
+...
+color
+fruit
+pet
+Используя тот же трюк, который вы видели ранее (оператор индексации []), вы можете получить доступ к значениям словаря:
+
+>>> for key in a_dict.keys():
+...     print(key, '->', a_dict[key])
+...
+color -> blue
+fruit -> apple
+pet -> dog
+Таким образом, вы получите доступ к ключам (key) и значениям (a_dict[key]) a_dict одновременно, и вы 
+сможете выполнять с ними любые действия.
+
+-------------------Итерация по .values()
+Также можно использовать значения для перебора словаря. Один из способов сделать это — использовать .values(), 
+который возвращает представление со значениями словаря:
+>>> a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+>>> values = a_dict.values()
+>>> values
+dict_values(['blue', 'apple', 'dog'])
+
+
+Как и любой объект представления, объект, возвращаемый функцией .values(), также может быть итерирован. 
+В этом случае .values() возвращает значения a_dict:
+
+>>> for value in a_dict.values():
+...     print(value)
+...
+blue
+apple
+dog
+
+--------------in
+>>> a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+>>> 'pet' in a_dict.keys()
+True
+>>> 'apple' in a_dict.values()
+True
+>>> 'onion' in a_dict.values()
+False
+
+----------------------------Изменение значений и ключей
+>>> prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> for k, v in prices.items():
+...     prices[k] = round(v * 0.9, 2)  # Apply a 10% discount
+...
+>>> prices
+{'apple': 0.36, 'orange': 0.32, 'banana': 0.23}
+
+---------------------Удаление ключей
+С другой стороны, ключи могут быть добавлены или удалены из словаря путем преобразования представления, 
+возвращаемого функцией .keys(), в объект list:
+
+>>> prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> for key in list(prices.keys()):  # Use a list instead of a view
+...     if key == 'orange':
+...         del prices[key]  # Delete a key from prices
+...
+>>> prices
+{'apple': 0.4, 'banana': 0.25}
+!!!! Можно лист не объявлять. Сразу работать как со списком, а затем выводить словарь.!!!!
+
+------------------Превращение ключей в значение и наоборот
+>>> a_dict = {'one': 1, 'two': 2, 'thee': 3, 'four': 4}
+>>> new_dict = {}
+>>> for key, value in a_dict.items():
+...     new_dict[value] = key
+...
+>>> new_dict
+{1: 'one', 2: 'two', 3: 'thee', 4: 'four'}
+
+ВТорой способ:
+>>> a_dict = {'one': 1, 'two': 2, 'thee': 3, 'four': 4}
+>>> new_dict = {value: key for key, value in a_dict.items()}
+>>> new_dict
+{1: 'one', 2: 'two', 3: 'thee', 4: 'four'}
+
+
+---------------------Фильтрация
+>>> a_dict = {'one': 1, 'two': 2, 'thee': 3, 'four': 4}
+>>> new_dict = {}  # Create a new empty dictionary
+>>> for key, value in a_dict.items():
+...     # If value satisfies the condition, then store it in new_dict
+...     if value <= 2:
+...         new_dict[key] = value
+...
+>>> new_dict
+{'one': 1, 'two': 2}
+
+Второй способ:
+>>> a_dict = {'one': 1, 'two': 2, 'thee': 3, 'four': 4}
+>>> new_dict = {k: v for k, v in a_dict.items() if v <= 2}
+>>> new_dict
+{'one': 1, 'two': 2}
+
+
+
+----------------Выполнять некоторые расчеты
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> total_income = 0.00
+>>> for value in incomes.values():
+...     total_income += value  # Accumulate the values in total_income
+...
+>>> total_income
+14100.0
+
+
+Второй способ:
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> total_income = sum([value for value in incomes.values()])
+>>> total_income
+14100.0
+
+
+Третий способ:
+>>> total_income = sum(value for value in incomes.values())
+>>> total_income
+14100.0
+Если вы работаете с действительно большим словарем, и использование памяти является проблемой для вас, 
+тогда вы можете использовать выражение-генератор (generator expression) вместо генератора списков. 
+выражение-генератор — это выражение, которое возвращает итератор. Это похоже на генератор списков, 
+но вместо квадратных скобок для его определения необходимо использовать круглые скобки
+
+Четвёртый способ:
+>>> total_income = sum(incomes.values())
+>>> total_income
+14100.0
+
+самый лучший
+
+
+-------------------Использование генераторов (comprehensions)
+>>> objects = ['blue', 'apple', 'dog']
+>>> categories = ['color', 'fruit', 'pet']
+>>> a_dict = {key: value for key, value in zip(categories, objects)}
+>>> a_dict
+{'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+Здесь zip() получает два итерируемых объекта categories и objects в качестве аргументов и создает итератор, 
+который объединяет элементы из каждого объекта. Объекты кортежа, сгенерированные zip(), затем распаковываются 
+в ключ и значение, которые в итоге используются для создания нового словаря.
+
+
+
+--------------------------Удаление выбранных элементов
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> non_citric = {k: incomes[k] for k in incomes.keys() - {'orange'}}
+>>> non_citric
+{'apple': 5600.0, 'banana': 5000.0}
+
+-----------------Сортировка словаря
+>>> # Python 3.6, and beyond
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> sorted_income = {k: incomes[k] for k in sorted(incomes)}
+>>> sorted_income
+{'apple': 5600.0, 'banana': 5000.0, 'orange': 3500.0}
+
+------------------Итерация в отсортированном порядке
+Сортировка по ключам-----------------------
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> for key in sorted(incomes):
+...     print(key, '->', incomes[key])
+...
+apple -> 5600.0
+banana -> 5000.0
+orange -> 3500.0
+
+Сортировка по значениям-------------------
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> def by_value(item):
+...     return item[1]
+...
+>>> for k, v in sorted(incomes.items(), key=by_value):
+...     print(k, '->', v)
+...
+('orange', '->', 3500.0)
+('banana', '->', 5000.0)
+('apple', '->', 5600.0)
+
+Второй вариант
+>>> for value in sorted(incomes.values()):
+...     print(value)
+...
+3500.0
+5000.0
+5600.0
+
+Реверсия------------------------
+Если вам нужно отсортировать словари в обратном порядке, вы можете добавить reverse = True в качестве аргумента для sorted().
+Ключевое слово аргумент reverse должно принимать логическое значение.
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> for key in sorted(incomes, reverse=True):
+...     print(key, '->', incomes[key])
+...
+orange -> 3500.0
+banana -> 5000.0
+apple -> 5600.0
+
+----------------------Разрушительная итерация с помощью .popitem()-----------------------
+Иногда нужно перебрать словарь в Python и последовательно удалить его элементы. Для выполнения этой задачи можно 
+использовать .popitem(), которая удалит и возвратит произвольную пару ключ-значение из словаря.
+ 1 # File: dict_popitem.py
+ 2 
+ 3 a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+ 4 
+ 5 while True:
+ 6     try:
+ 7         print(f'Dictionary length: {len(a_dict)}')
+ 8         item = a_dict.popitem()
+ 9         # Do something with item here...
+10         print(f'{item} removed')
+11     except KeyError:
+12         print('The dictionary has no item now...')
+13         break
+
+----------------------------Использование некоторых из встроенных функций-----------------
+
+
+------------------map()
+map() определяется как map(function, iterable, …) и возвращает итератор, который применяет функцию к каждому 
+элементу итерируемого. Таким образом, map() можно рассматривать как инструмент итерации, который можно использовать 
+для перебора словаря.
+
+Предположим, у вас есть словарь, содержащий цены на несколько продуктов, и вам нужно применить скидку к ним. 
+В этом случае вы можете определить функцию, которая управляет скидкой, а затем использует ее в качестве первого 
+аргумента для map(). Вторым аргументом может быть price.items():
+
+>>> prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> def discount(current_price):
+...     return (current_price[0], round(current_price[1] * 0.95, 2))
+...
+>>> new_prices = dict(map(discount, prices.items()))
+>>> new_prices
+{'apple': 0.38, 'orange': 0.33, 'banana': 0.24}
+Здесь map() перебирает элементы словаря (prices.items()), чтобы применить скидку 5% к каждому фрукту с 
+помощью discount(). В этом случае вам нужно использовать dict() для создания словаря new_prices из итератора, 
+возвращаемого map().
+Обратите внимание, что discount() возвращает кортеж в форме (key, value), где current_price[0] представляет ключ, 
+а round(current_price [1] * 0.95, 2) представляет новое значение.
+
+-----------------filter()
+filter () — это еще одна встроенная функция, которую вы можете использовать для перебора словаря и фильтрации 
+некоторых его элементов. Эта функция определяется как filter(function, iterable) и возвращает итератор 
+из тех элементов итерируемого, для которых функция возвращает значение True.
+
+Предположим, вы хотите знать продукты с ценой ниже 0,40. Вам нужно определить функцию, чтобы определить, 
+удовлетворяет ли цена этому условию, и передать ее в качестве первого аргумента для filter(). 
+Вторым аргументом может быть prices.keys():
+
+>>> prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> def has_low_price(price):
+...     return prices[price] < 0.4
+...
+>>> low_price = list(filter(has_low_price, prices.keys()))
+>>> low_price
+['orange', 'banana']
+Здесь вы перебирали ключи prices с помощью filter(). Тогда filter() применяет has_low_price() к каждому ключу 
+prices. Наконец нужно использовать list() для генерации списка продуктов с низкой ценой, потому что 
+filter() возвращает итератор, и нам нужен объект list.
+
+----------------------------Использование collections.ChainMap----------------------
+collections — полезный модуль из стандартной библиотеки Python, предоставляющий специализированные 
+типы данных контейнеров. Одним из таких типов данных является ChainMap, который является словарным 
+классом для создания единого представления нескольких сопоставлений (например, словарей). С ChainMap вы можете 
+сгруппировать несколько словарей вместе, чтобы создать одно обновляемое представление.
+
+Теперь предположим, что у вас есть два (или более) словаря, и вам нужно перебирать их вместе как один. 
+Для этого вы можете создать объект ChainMap и инициализировать его своими словарями:
+
+>>> from collections import ChainMap
+>>> fruit_prices = {'apple': 0.40, 'orange': 0.35}
+>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55}
+>>> chained_dict = ChainMap(fruit_prices, vegetable_prices)
+>>> chained_dict  # A ChainMap object
+ChainMap({'apple': 0.4, 'orange': 0.35}, {'pepper': 0.2, 'onion': 0.55})
+>>> for key in chained_dict:
+...     print(key, '->', chained_dict[key])
+...
+pepper -> 0.2
+orange -> 0.35
+onion -> 0.55
+apple -> 0.4
+После импорта ChainMap из collections вам необходимо создать объект ChainMap со словарями, 
+которые вы хотите объединить в цепочку, а затем вы можете свободно перебирать полученный объект, 
+как если бы вы делали это с обычным словарем.
+
+Объекты ChainMap также реализуют .keys(), values() и .items(), как это делает стандартный словарь, 
+поэтому вы можете использовать эти методы для итерации по словарному объекту, сгенерированному ChainMap, 
+точно так же, как вы это делаете с обычным словарь:
+
+>>> for key, value in chained_dict.items():
+...     print(key, '->', value)
+...
+apple -> 0.4
+pepper -> 0.2
+orange -> 0.35
+onion -> 0.55
+
+----------------------------------Использование itertools---------------------------
+Iterotools — модуль, который предоставляет некоторые полезные инструменты для выполнения итерационных задач. 
+Давайте посмотрим, как можно использовать некоторые из них для перебора словаря в Python.
+
+---------------Циклическая итерация с помощью cycle()
+Предположим, вы хотите перебрать словарь в Python, но вам нужно перебирать его несколько раз в одном цикле. 
+Чтобы выполнить эту задачу, вы можете использовать itertools.cycle(iterable), который заставляет итератор 
+возвращать элементы из iterable и сохранять копию каждого из них. Когда итерация исчерпана, cycle() возвращает 
+элементы из сохраненной копии. Это выполняется циклически, поэтому вы можете остановить цикл.
+
+В следующем примере вы будете перебирать элементы словаря три раза подряд:
+
+>>> from itertools import cycle
+>>> prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> times = 3  # Define how many times you need to iterate through prices
+>>> total_items = times * len(prices)
+>>> for item in cycle(prices.items()):
+...     if not total_items:
+...         break
+...     total_items -= 1
+...     print(item)
+...
+('apple', 0.4)
+('orange', 0.35)
+('banana', 0.25)
+('apple', 0.4)
+('orange', 0.35)
+('banana', 0.25)
+('apple', 0.4)
+('orange', 0.35)
+('banana', 0.25)
+
+-------------------------------Итерация с chain()
+itertools также предоставляет функцию chain(*iterables), которая получает некоторые итерируемые аргументы 
+в качестве аргументов и создает итератор, который возвращает элементы из итерируемого объекта до тех пор, 
+пока он не будет исчерпан, а затем итерирует по следующему итерируемуго объекту и т. д., пока все они не будут исчерпаны.
+
+Это позволяет вам перебирать несколько словарей в цепочке, как в случае с collections.ChainMap:
+
+>>> from itertools import chain
+>>> fruit_prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55, 'tomato': 0.42}
+>>> for item in chain(fruit_prices.items(), vegetable_prices.items()):
+...     print(item)
+...
+('apple', 0.4)
+('orange', 0.35)
+('banana', 0.25)
+('pepper', 0.2)
+('onion', 0.55)
+('tomato', 0.42)
+В приведенном выше коде chain() вернула итерацию, которая объединила элементы из fruit_prices и vegetable_prices.
+Также возможно использовать .keys() или .values(), в зависимости от ваших потребностей, с условием быть однородным: 
+если вы используете .keys() в качестве аргумента для chain(), то вам нужно использовать .keys( ) для остальных из них.
+
+--------------------Использование оператора распаковки словаря (**)
+Python 3.5 приносит новую и интересную функцию. PEP 448 — Additional Unpacking Generalizations могут упростить вашу жизнь, 
+когда дело доходит до перебора нескольких словарей в Python. Давайте посмотрим, как это работает, на коротком примере.
+
+Предположим, у вас есть два (или более) словаря, и вам нужно выполнять их итерацию вместе, без использования 
+collection.ChainMap или itertools.chain(). В этом случае можно использовать оператор распаковки словаря (**), 
+чтобы объединить два словаря в новый и затем выполнить итерацию по нему:
+
+>>> fruit_prices = {'apple': 0.40, 'orange': 0.35}
+>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55}
+>>> # How to use the unpacking operator **
+>>> {**vegetable_prices, **fruit_prices}
+{'pepper': 0.2, 'onion': 0.55, 'apple': 0.4, 'orange': 0.35}
+>>> # You can use this feature to iterate through multiple dictionaries
+>>> for k, v in {**vegetable_prices, **fruit_prices}.items():
+...     print(k, '->', v)
+...
+pepper -> 0.2
+onion -> 0.55
+apple -> 0.4
+orange -> 0.35
+Оператор распаковки словаря (**) действительно замечательная функция в Python. Она позволяет объединить 
+несколько словарей в один новый, как мы это делали в примере с vegetable_prices и fruit_prices. После 
+объединения словарей с оператором распаковки вы можете перебирать новый словарь как обычно.
+
+Важно отметить, что если словари, которые вы пытаетесь объединить, имеют повторяющиеся или общие ключи, то 
+значения самого послденего словаря будут преобладать:
+
+>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55}
+>>> fruit_prices = {'apple': 0.40, 'orange': 0.35, 'pepper': .25}
+>>> {**vegetable_prices, **fruit_prices}
+{'pepper': 0.25, 'onion': 0.55, 'apple': 0.4, 'orange': 0.35}
+Ключ pepper присутствует в обоих словарях. После объединения их значение fruit_prices для pepper (0.25) 
+превалирует, потому что fruit_prices — самый последний словарь.
+
+
+
