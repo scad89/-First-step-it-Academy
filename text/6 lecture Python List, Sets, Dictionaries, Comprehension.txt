@@ -122,7 +122,7 @@ print([int(i) for i in strng if '0' <= i <= '9'])
 Таким способом мы можем сразу же добавлять в массив целые числа из строки.
 
 ------
-names = ['diMA', 'ANdrEY', ' george', 'aRTem', 'V']
+names = ['diMA', 'ANdrEY', 'george', 'aRTem', 'V']
 print({name[0].upper() + name[1:].lower() for name in names if len(name) > 1})
 Таким способом мы можем делать первую букву в строчке большой, а остальные маленькие
 
