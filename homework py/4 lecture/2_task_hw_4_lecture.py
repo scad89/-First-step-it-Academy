@@ -1,14 +1,10 @@
-def reverse_number(n: int, last_digit: int) -> int:
-    last_digit = n % 10
+def reverse_number(n: int) -> int:
     if n == 0:
         return 0
     else:
-        print(last_digit, end='')
-        n = n//10
-    return reverse_number(n, last_digit)
+        print(n % 10, end='')
+    return reverse_number(n//10)
 
 
 n = int(input())
-last_digit = 0
-
-reverse_number(n, last_digit)
+reverse_number(n)
