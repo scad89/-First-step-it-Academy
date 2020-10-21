@@ -1,10 +1,12 @@
 def find_max_XOR(ls):
     max_XOR = 0
-    for i in range(len(ls)):
-        for j in range(i+1, len(ls)):
-            a = ls[i] ^ ls[j]
-            if a > max_XOR:
-                max_XOR = a
+    ls.sort()
+    ls.reverse()
+    max_value = ls[0]
+    for i in range(1, len(ls)):
+        xor = max_value ^ ls[i]
+        if xor > max_XOR:
+            max_XOR = xor
     return max_XOR
 
 

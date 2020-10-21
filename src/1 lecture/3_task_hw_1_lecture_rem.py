@@ -1,9 +1,13 @@
 def find_double_ints(ls):
 
-    for i in range(len(ls)):
-        for j in range(i+1, len(ls)):
-            if ls[i] == ls[j]:
-                print(f'Double int {ls[i]}')
+    ls.sort()
+    num = 0
+    for i in ls:
+        if i != num:
+            num = i
+        elif i == num:
+            print(f'Double int {i}')
+            break
 
 
 ls = []
