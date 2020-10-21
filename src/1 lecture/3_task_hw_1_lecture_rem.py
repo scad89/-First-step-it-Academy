@@ -1,7 +1,7 @@
 def find_double_ints(ls):
 
-    for i in set(ls):
-        if ls.count(i) > 1:
+    for i in ls:
+        if ls.count(i) >= 2:
             print(f'Double int {i}')
             break
 
