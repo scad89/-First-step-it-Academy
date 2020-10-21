@@ -1,9 +1,10 @@
 def find_double_ints(ls):
 
+    double_list = []
     for i in ls:
-        if ls.count(i) >= 2:
+        if i in double_list:
             print(f'Double int {i}')
-            break
+        double_list.append(i)
 
 
 ls = []
