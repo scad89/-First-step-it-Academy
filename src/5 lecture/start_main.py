@@ -161,7 +161,8 @@ def kombat(left_fighter, right_fighter, *list_action):
         list_action = ['attack_left_arm', 'attack_right_arm', 'attack_left_leg',
                        'attack_right_leg', 'attack_knee_blow', 'attack_headbutt', 'attack_ammo', 'special_ability']
         random.shuffle(list_action)
-        action_left_fighter = int(input('Введите число для атаки (0-7): '))
+        action_left_fighter = int(
+            input(f'Введите число (0-7), чтобы атаковать {right_fighter.name}: '))
         if list_action[action_left_fighter] == 'attack_left_arm':
             left_fighter.attack_left_arm(right_fighter)
         elif list_action[action_left_fighter] == 'attack_right_arm':
@@ -179,7 +180,8 @@ def kombat(left_fighter, right_fighter, *list_action):
         elif list_action[action_left_fighter] == 'special_ability':
             left_fighter.special_ability(right_fighter)
         random.shuffle(list_action)
-        action_right_fighter = int(input('Введите число для атаки (0-7): '))
+        action_right_fighter = int(
+            input(f'Введите число (0-7), чтобы атаковать {left_fighter.name}: '))
         if list_action[action_right_fighter] == 'attack_left_arm':
             right_fighter.attack_left_arm(left_fighter)
         elif list_action[action_right_fighter] == 'attack_right_arm':
@@ -214,12 +216,9 @@ killer = Killer('Киллер', 125, 65, 100, 'Снайперская винто
 cyborg = Cyborg('Киборг', 100, 125, 90, 'Наноброня', 1200)
 paladin = Paladin('Паладин', 100, 130, 100, 'Святой посох', 1100)
 
-list_fighters = ('Солдат', 'Ниндзья', 'Берсерк', 'Лучница', 'Монах', 'Волшебница', 'Верховный маг', 'Друид', 'Рыцарь', 'Некромант', 'Мутант', 'Пророк',
-                 'Киллер', 'Киборг', 'Паладин')
-print(*list_fighters, sep='\n')
-list_fighters_func = (soldier, ninja, berserker, archer, monk, sorceress, archmage,
-                      druid, knight, necromancer, mutant, prophet, killer, cyborg, paladin)
-dict_fighter = dict(zip(list_fighters, list_fighters_func))
+dict_fighter = {'Солдат': soldier, 'Ниндзья': ninja, 'Берсерк': berserker, 'Лучница': archer, 'Монах': monk, 'Волшебница': sorceress, 'Верховный маг': archmage, 'Друид': druid, 'Рыцарь': knight, 'Некромант': necromancer, 'Мутант': mutant, 'Пророк': prophet,
+                'Киллер': killer, 'Киборг': cyborg, 'Паладин': paladin}
+print(*dict_fighter.keys(), sep='\n')
 choise_left_fighter = input('Выберите Вашего бойца: ')
 left_fighter = dict_fighter[choise_left_fighter]
 choise_right_fighter = input('Выберите Вашего соперника: ')
