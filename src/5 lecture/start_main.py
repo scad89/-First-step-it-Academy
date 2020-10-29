@@ -1,166 +1,33 @@
 from fighters_main_class import Fighters
+from fighter_castes import Humans, Mages, Creatures
+from fighter_classes import *
 import random
-
-
-class Soldier(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 110
-        print(f'{self.name} бросил гранату')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Ninja(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 150
-        print(
-            f'{self.name} бросает дымовую гранату и наносит удар катаной в уязвимое место')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Berserker(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 220
-        print(
-            f'{self.name} наносит удар топором {enemy_fighter.name}')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Archer(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 170
-        print(
-            f'{self.name} производит выстрел взрывающейся стрелой {enemy_fighter.name}')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Monk(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        self.strenght += 5
-        self.defence += 10
-        self.health += 100
-        print(f'{self.name} прочитал молитву и увеличил свои атрибуты')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Sorceress(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 100
-        enemy_fighter.strenght -= 5
-        enemy_fighter.defence -= 5
-        enemy_fighter.energy -= 15
-        print(f'{self.name} призывает ледяной шторм')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Аrchmage(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 100
-        self.health += 100
-        print(f'{self.name} вызвал огненный дождь.')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Druid(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 120
-        self.strenght += 15
-        self.defence += 8
-        self.health += 50
-        print(f'{self.name} превратился в волка и сильно ранил {enemy_fighter.name}')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Knight(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 200
-        print(f'{self.name} проткнул копьём {enemy_fighter.name}')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Necromancer(Fighters):
-    def special_ability(self, enemy_fighter):
-        skill = input(
-            f'Вызвать голема или наложить заклятие на {enemy_fighter.name}? Сдела выбор 1 или 2: ')
-        if skill == '1':
-            self.up_point(20)
-            enemy_fighter.health -= 160
-            print(
-                f'{self.name} призвал голема и он нанёс сокрушительный удар {enemy_fighter.name}')
-        elif skill == '2':
-            self.up_point(20)
-            enemy_fighter.strenght -= 20
-            enemy_fighter.defence -= 20
-            enemy_fighter.energy -= 30
-            print(f'{self.name} использовал заклинание "Iron Maiden"')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Mutant(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 150
-        print(f'{self.name} проткнул {enemy_fighter.name} своими щупальцами')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Prophet(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        self.strenght += 15
-        self.health += 100
-        print(f'{self.name} использует восстановление и увеличение силы')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Killer(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        enemy_fighter.health -= 80
-        enemy_fighter.energy -= 30
-        print(f'{self.name} простреливает колени {enemy_fighter.name}')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Cyborg(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        self.energy += 12
-        self.defence += 20
-        print(f'{self.name} использовал наноброню')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
-
-
-class Paladin(Fighters):
-    def special_ability(self, enemy_fighter):
-        self.up_point(20)
-        self.strenght += 5
-        enemy_fighter.health -= 120
-        print(f'{self.name} вызвал ауру и нанёс урон {enemy_fighter.name}')
-        print(f'У {enemy_fighter.name} осталось {enemy_fighter.health} очков жизни')
 
 
 def check_finish(fighter):
     if fighter.health < 0:
         print(f'Боец {fighter.name} убит.')
-
         return True
     return False
 
 
-def kombat(left_fighter, right_fighter, *list_action):
+def check_special_skills_castes(fighters):
+    if isinstance(fighters, Humans):
+        fighters.up_armor_human()
+        fighters.up_strenght()
+    elif isinstance(fighters, Mages):
+        fighters.recovery()
+        fighters.ghoul()
+    elif isinstance(fighters, Creatures):
+        fighters.use_rage()
+
+
+def kombat(left_fighter, right_fighter):
+    list_action = ['attack_left_arm', 'attack_right_arm', 'attack_left_leg',
+                   'attack_right_leg', 'attack_knee_blow', 'attack_headbutt', 'attack_ammo', 'special_ability']
     while not check_finish(left_fighter) and not check_finish(right_fighter):
-        list_action = ['attack_left_arm', 'attack_right_arm', 'attack_left_leg',
-                       'attack_right_leg', 'attack_knee_blow', 'attack_headbutt', 'attack_ammo', 'special_ability']
         random.shuffle(list_action)
+        check_special_skills_castes(left_fighter)
         action_left_fighter = int(
             input(f'Введите число (0-7), чтобы атаковать {right_fighter.name}: '))
         if list_action[action_left_fighter] == 'attack_left_arm':
@@ -180,6 +47,7 @@ def kombat(left_fighter, right_fighter, *list_action):
         elif list_action[action_left_fighter] == 'special_ability':
             left_fighter.special_ability(right_fighter)
         random.shuffle(list_action)
+        check_special_skills_castes(right_fighter)
         action_right_fighter = int(
             input(f'Введите число (0-7), чтобы атаковать {left_fighter.name}: '))
         if list_action[action_right_fighter] == 'attack_left_arm':
@@ -200,28 +68,32 @@ def kombat(left_fighter, right_fighter, *list_action):
             right_fighter.special_ability(left_fighter)
 
 
-soldier = Soldier('Солдат', 100, 80, 50, 'Атомат', 1000)
-ninja = Ninja('Ниньдзя', 120, 40, 50, 'Катана', 900)
-berserker = Berserker('Берсерк', 110, 60, 50, 'Два меча', 1200)
-archer = Archer('Лучница', 130, 40, 50, 'Лук', 900)
-monk = Monk('Монах', 100, 60, 50, 'Боевое кадило', 1000)
-sorceress = Sorceress('Волшебница', 110, 50, 75, 'Посох', 1000)
-archmage = Аrchmage('Верховный маг', 120, 80, 75, 'Волшебный жезл', 1100)
-druid = Druid('Друид', 80, 120, 75, 'Коготь зверя', 900)
-knight = Knight('Рыцарь', 50, 150, 50, 'Меч', 1150)
-necromancer = Necromancer('Некромант', 90, 70, 75, 'Костянной посох', 1000)
-mutant = Mutant('Мутант', 85, 80, 50, 'Пулемёт', 1500)
-prophet = Prophet('Пророк', 70, 140, 75, 'Волшебный посох', 900)
-killer = Killer('Киллер', 125, 65, 50, 'Снайперская винтовка', 1000)
-cyborg = Cyborg('Киборг', 100, 125, 45, 'Наноброня', 1200)
-paladin = Paladin('Паладин', 100, 130, 50, 'Святой посох', 1100)
+if __name__ == '__main__':
+    soldier = Soldier('Солдат', 100, 80, 70, 'Атомат', 2000)
+    ninja = Ninja('Ниньдзя', 120, 40, 70, 'Катана', 1800)
+    berserker = Berserker('Берсерк', 110, 60, 70, 'Два меча', 2400)
+    archer = Archer('Лучница', 130, 40, 70, 'Лук', 1800)
+    monk = Monk('Монах', 100, 60, 70, 'Боевое кадило', 2000)
+    sorceress = Sorceress('Волшебница', 110, 50, 95, 'Посох', 2000, 50)
+    archmage = Аrchmage('Верховный маг', 120, 80, 95,
+                        'Волшебный жезл', 2200, 50)
+    druid = Druid('Друид', 80, 120, 95, 'Коготь зверя', 1900, 50)
+    knight = Knight('Рыцарь', 50, 150, 70, 'Меч', 2300)
+    necromancer = Necromancer('Некромант', 90, 70, 95,
+                              'Костянной посох', 2000, 50)
+    mutant = Mutant('Мутант', 85, 80, 70, 'Пулемёт', 3000, 30)
+    prophet = Prophet('Пророк', 70, 140, 95, 'Волшебный посох', 1800, 50)
+    killer = Killer('Киллер', 125, 65, 70, 'Снайперская винтовка', 2000)
+    cyborg = Cyborg('Киборг', 100, 125, 65, 'Наноброня', 2400, 30)
+    paladin = Paladin('Паладин', 100, 130, 70, 'Святой посох', 2200)
 
-dict_fighter = {'Солдат': soldier, 'Ниндзья': ninja, 'Берсерк': berserker, 'Лучница': archer, 'Монах': monk, 'Волшебница': sorceress, 'Верховный маг': archmage, 'Друид': druid, 'Рыцарь': knight, 'Некромант': necromancer, 'Мутант': mutant, 'Пророк': prophet,
-                'Киллер': killer, 'Киборг': cyborg, 'Паладин': paladin}
-print(*dict_fighter.keys(), sep='\n')
-choise_left_fighter = input('Выберите Вашего бойца: ')
-left_fighter = dict_fighter[choise_left_fighter]
-choise_right_fighter = input('Выберите Вашего соперника: ')
-right_fighter = dict_fighter[choise_right_fighter]
-kombat(left_fighter, right_fighter)
-print(f'Вы набрали {left_fighter.points} очков')
+    dict_fighter = {'Солдат': soldier, 'Ниндзья': ninja, 'Берсерк': berserker, 'Лучница': archer, 'Монах': monk, 'Волшебница': sorceress, 'Верховный маг': archmage, 'Друид': druid, 'Рыцарь': knight, 'Некромант': necromancer, 'Мутант': mutant, 'Пророк': prophet,
+                    'Киллер': killer, 'Киборг': cyborg, 'Паладин': paladin}
+    print(*dict_fighter.keys(), sep='\n')
+    choise_left_fighter = input('Выберите Вашего бойца: ')
+    your_fighter = dict_fighter[choise_left_fighter]
+    choise_right_fighter = input('Выберите Вашего соперника: ')
+    your_enemy_fighter = dict_fighter[choise_right_fighter]
+    kombat(your_fighter, your_enemy_fighter)
+    print(f'{your_fighter.name} набрал {your_fighter.points} очков')
+    print(f'{your_enemy_fighter.name} набрал {your_enemy_fighter.points} очков')
