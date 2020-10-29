@@ -69,25 +69,25 @@ def kombat(left_fighter, right_fighter):
 
 
 if __name__ == '__main__':
-    soldier = Soldier('Солдат', 100, 80, 70, 'Атомат', 2000)
-    ninja = Ninja('Ниньдзя', 120, 40, 70, 'Катана', 1800)
-    berserker = Berserker('Берсерк', 110, 60, 70, 'Два меча', 2400)
-    archer = Archer('Лучница', 130, 40, 70, 'Лук', 1800)
-    monk = Monk('Монах', 100, 60, 70, 'Боевое кадило', 2000)
-    sorceress = Sorceress('Волшебница', 110, 50, 95, 'Посох', 2000, 50)
-    archmage = Аrchmage('Верховный маг', 120, 80, 95,
+    soldier = Soldier('Солдат', 150, 80, 70, 'Атомат', 2000)
+    ninja = Ninja('Ниньдзя', 170, 40, 70, 'Катана', 1800)
+    berserker = Berserker('Берсерк', 160, 60, 70, 'Два меча', 2400)
+    archer = Archer('Лучница', 180, 40, 70, 'Лук', 1800)
+    monk = Monk('Монах', 150, 60, 70, 'Боевое кадило', 2000)
+    sorceress = Sorceress('Волшебница', 160, 50, 95, 'Посох', 2000, 50)
+    archmage = Аrchmage('Верховный маг', 170, 80, 95,
                         'Волшебный жезл', 2200, 50)
-    druid = Druid('Друид', 80, 120, 95, 'Коготь зверя', 1900, 50)
-    knight = Knight('Рыцарь', 50, 150, 70, 'Меч', 2300)
-    necromancer = Necromancer('Некромант', 90, 70, 95,
+    druid = Druid('Друид', 130, 120, 95, 'Коготь зверя', 1900, 50)
+    knight = Knight('Рыцарь', 100, 150, 70, 'Меч', 2300)
+    necromancer = Necromancer('Некромант', 140, 70, 95,
                               'Костянной посох', 2000, 50)
-    mutant = Mutant('Мутант', 85, 80, 70, 'Пулемёт', 3000, 30)
-    prophet = Prophet('Пророк', 70, 140, 95, 'Волшебный посох', 1800, 50)
-    killer = Killer('Киллер', 125, 65, 70, 'Снайперская винтовка', 2000)
-    cyborg = Cyborg('Киборг', 100, 125, 65, 'Наноброня', 2400, 30)
-    paladin = Paladin('Паладин', 100, 130, 70, 'Святой посох', 2200)
+    mutant = Mutant('Мутант', 135, 80, 70, 'Пулемёт', 3000, 30)
+    prophet = Prophet('Пророк', 120, 140, 95, 'Волшебный посох', 1800, 50)
+    killer = Killer('Киллер', 175, 65, 70, 'Снайперская винтовка', 2000)
+    cyborg = Cyborg('Киборг', 150, 125, 65, 'Наноброня', 2400, 30)
+    paladin = Paladin('Паладин', 150, 130, 70, 'Святой посох', 2200)
 
-    dict_fighter = {'Солдат': soldier, 'Ниндзья': ninja, 'Берсерк': berserker, 'Лучница': archer, 'Монах': monk, 'Волшебница': sorceress, 'Верховный маг': archmage, 'Друид': druid, 'Рыцарь': knight, 'Некромант': necromancer, 'Мутант': mutant, 'Пророк': prophet,
+    dict_fighter = {'Солдат': soldier, 'Ниньдзя': ninja, 'Берсерк': berserker, 'Лучница': archer, 'Монах': monk, 'Волшебница': sorceress, 'Верховный маг': archmage, 'Друид': druid, 'Рыцарь': knight, 'Некромант': necromancer, 'Мутант': mutant, 'Пророк': prophet,
                     'Киллер': killer, 'Киборг': cyborg, 'Паладин': paladin}
     print(*dict_fighter.keys(), sep='\n')
     choise_left_fighter = input('Выберите Вашего бойца: ')
