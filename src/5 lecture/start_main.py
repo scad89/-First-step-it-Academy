@@ -1,6 +1,22 @@
 from fighters_main_class import Fighters
-from fighter_castes import Humans, Mages, Creatures
-from fighter_classes import *
+from Human_castes import Humans
+from Mages_castes import Mages
+from Creatures_castes import Creatures
+from Soldier_class import *
+from Ninja_class import *
+from Berserker_class import *
+from Archer_class import *
+from Monk_class import *
+from Sorceress_class import *
+from Аrchmage_class import *
+from Druid_class import *
+from Knight_class import *
+from Necromancer_class import *
+from Mutant_class import *
+from Prophet_class import *
+from Killer_class import *
+from Cyborg_class import *
+from Paladin_class import *
 import random
 
 
