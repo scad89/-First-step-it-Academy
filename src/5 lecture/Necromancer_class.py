@@ -7,26 +7,43 @@ class Necromancer(Mages):
         skill = input(
             f'Вызвать голема или наложить заклятие на {enemy_fighter.name}? Сдела выбор 1 или 2: ')
         if skill == '1':
-            self.up_point(20)
-            enemy_fighter.health -= 160
-            print(
-                f'{self.name} призвал голема и он нанёс сокрушительный удар {int(enemy_fighter.health)}')
-            print()
+            self.golem(enemy_fighter)
         elif skill == '2':
-            self.up_point(20)
-            enemy_fighter.strenght -= 20
-            enemy_fighter.defence -= 20
-            enemy_fighter.energy -= 30
-            print(f'{self.name} использовал заклинание "Iron Maiden"')
-        print(
-            f'У {enemy_fighter.name} осталось {int(enemy_fighter.health)} очков жизни')
-        print()
+            self.iron_maiden(enemy_fighter)
 
-    def attack_ammo(self, enemy_fighter):
-        self.up_point(8)
-        self.health += 100
-        enemy_fighter.health -= self.strenght
-        print(f'{self.name} использовал/использовала своё оружие, {self.ammo}')
+    def golem(self, enemy_fighter):
+        self.up_point(20)
+        damage_defence = 0
+        damage_strenght = 0
+        damage_energy = 0
+        damage_health = self.strenght*2.2
+        self.print_for_special_ability_necromancer_golem(enemy_fighter)
+        enemy_fighter.take_damage(
+            damage_defence, damage_strenght, damage_energy, damage_health)
+
+    def iron_maiden(self, enemy_fighter):
+        damage_defence = 20
+        damage_strenght = 20
+        damage_energy = 30
+        damage_health = 0
+        self.print_for_special_ability_necromancer_golem_ironmaiden()
+        enemy_fighter.take_damage(
+            damage_defence, damage_strenght, damage_energy, damage_health)
+
+    def attack_left_arm(self, enemy_fighter):
+        self.up_point(1)
+        self.defence += 8
+        damage_defence = 0
+        damage_strenght = 0
+        damage_energy = 0
+        damage_health = self.strenght*0.3
+        self.print_for_attack_left_arm()
+        enemy_fighter.take_damage(
+            damage_defence, damage_strenght, damage_energy, damage_health)
+
+    def print_for_special_ability_necromancer_golem(self, enemy_fighter):
         print(
-            f'У {enemy_fighter.name} осталось {int(enemy_fighter.health)} очков жизни')
-        print()
+            f'{self.name} призвал голема и он нанёс сокрушительный удар {enemy_fighter.name}')
+
+    def print_for_special_ability_necromancer_golem_ironmaiden(self):
+        print(f'{self.name} использовал заклинание "Iron Maiden"')

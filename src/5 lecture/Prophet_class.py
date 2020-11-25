@@ -7,16 +7,25 @@ class Prophet(Mages):
         self.up_point(20)
         self.strenght += 15
         self.health += 100
-        print(f'{self.name} использует восстановление и увеличение силы')
-        print(
-            f'У {enemy_fighter.name} осталось {int(enemy_fighter.health)} очков жизни')
-        print()
+        damage_defence = 0
+        damage_strenght = 0
+        damage_energy = 0
+        damage_health = 0
+        self.print_for_special_ability_necromancer_prophet()
+        enemy_fighter.take_damage(
+            damage_defence, damage_strenght, damage_energy, damage_health)
 
-    def attack_ammo(self, enemy_fighter):
-        self.up_point(8)
-        self.health += 100
-        enemy_fighter.health -= self.strenght
-        print(f'{self.name} использовал/использовала своё оружие, {self.ammo}')
-        print(
-            f'У {enemy_fighter.name} осталось {int(enemy_fighter.health)} очков жизни')
-        print()
+    def attack_right_arm(self, enemy_fighter):
+        self.up_point(2)
+        self.health += 10
+        self.energy += 4
+        damage_defence = 0
+        damage_strenght = 0
+        damage_energy = 0
+        damage_health = self.strenght*0.4
+        self.print_for_attack_right_arm()
+        enemy_fighter.take_damage(
+            damage_defence, damage_strenght, damage_energy, damage_health)
+
+    def print_for_special_ability_necromancer_prophet(self):
+        print(f'{self.name} использует восстановление и увеличение силы')

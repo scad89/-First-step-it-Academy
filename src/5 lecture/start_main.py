@@ -42,46 +42,14 @@ def kombat(left_fighter, right_fighter):
     list_action = ['attack_left_arm', 'attack_right_arm', 'attack_left_leg',
                    'attack_right_leg', 'attack_knee_blow', 'attack_headbutt', 'attack_ammo', 'special_ability']
     while not check_finish(left_fighter) and not check_finish(right_fighter):
-        random.shuffle(list_action)
         check_special_skills_castes(left_fighter)
         action_left_fighter = int(
-            input(f'Введите число (0-7), чтобы атаковать {right_fighter.name}: '))
-        if list_action[action_left_fighter] == 'attack_left_arm':
-            left_fighter.attack_left_arm(right_fighter)
-        elif list_action[action_left_fighter] == 'attack_right_arm':
-            left_fighter.attack_right_arm(right_fighter)
-        elif list_action[action_left_fighter] == 'attack_left_leg':
-            left_fighter.attack_left_leg(right_fighter)
-        elif list_action[action_left_fighter] == 'attack_right_leg':
-            left_fighter.attack_right_leg(right_fighter)
-        elif list_action[action_left_fighter] == 'attack_knee_blow':
-            left_fighter.attack_knee_blow(right_fighter)
-        elif list_action[action_left_fighter] == 'attack_headbutt':
-            left_fighter.attack_headbutt(right_fighter)
-        elif list_action[action_left_fighter] == 'attack_ammo':
-            left_fighter.attack_ammo(right_fighter)
-        elif list_action[action_left_fighter] == 'special_ability':
-            left_fighter.special_ability(right_fighter)
-        random.shuffle(list_action)
+            input(f'Введите число (1-8), чтобы атаковать {right_fighter.name}: '))
+        getattr(left_fighter, list_action[action_left_fighter])(right_fighter)
         check_special_skills_castes(right_fighter)
         action_right_fighter = int(
-            input(f'Введите число (0-7), чтобы атаковать {left_fighter.name}: '))
-        if list_action[action_right_fighter] == 'attack_left_arm':
-            right_fighter.attack_left_arm(left_fighter)
-        elif list_action[action_right_fighter] == 'attack_right_arm':
-            right_fighter.attack_right_arm(left_fighter)
-        elif list_action[action_right_fighter] == 'attack_left_leg':
-            right_fighter.attack_left_leg(left_fighter)
-        elif list_action[action_right_fighter] == 'attack_right_leg':
-            right_fighter.attack_right_leg(left_fighter)
-        elif list_action[action_right_fighter] == 'attack_knee_blow':
-            right_fighter.attack_knee_blow(left_fighter)
-        elif list_action[action_right_fighter] == 'attack_headbutt':
-            right_fighter.attack_headbutt(left_fighter)
-        elif list_action[action_right_fighter] == 'attack_ammo':
-            right_fighter.attack_ammo(left_fighter)
-        elif list_action[action_right_fighter] == 'special_ability':
-            right_fighter.special_ability(left_fighter)
+            input(f'Введите число (1-8), чтобы атаковать {left_fighter.name}: '))
+        getattr(right_fighter, list_action[action_right_fighter])(left_fighter)
 
 
 if __name__ == '__main__':
@@ -97,10 +65,10 @@ if __name__ == '__main__':
     knight = Knight('Рыцарь', 100, 150, 70, 'Меч', 2300)
     necromancer = Necromancer('Некромант', 140, 70, 95,
                               'Костянной посох', 2000, 50)
-    mutant = Mutant('Мутант', 135, 80, 70, 'Пулемёт', 3000, 30)
+    mutant = Mutant('Мутант', 135, 80, 70, 'Пулемёт', 3000, 180)
     prophet = Prophet('Пророк', 120, 140, 95, 'Волшебный посох', 1800, 50)
     killer = Killer('Киллер', 175, 65, 70, 'Снайперская винтовка', 2000)
-    cyborg = Cyborg('Киборг', 150, 125, 65, 'Наноброня', 2400, 30)
+    cyborg = Cyborg('Киборг', 150, 125, 65, 'Наноброня', 2400, 200)
     paladin = Paladin('Паладин', 150, 130, 70, 'Святой посох', 2200)
 
     dict_fighter = {'Солдат': soldier, 'Ниньдзя': ninja, 'Берсерк': berserker, 'Лучница': archer, 'Монах': monk, 'Волшебница': sorceress, 'Верховный маг': archmage, 'Друид': druid, 'Рыцарь': knight, 'Некромант': necromancer, 'Мутант': mutant, 'Пророк': prophet,

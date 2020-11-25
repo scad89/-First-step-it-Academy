@@ -5,17 +5,24 @@ from Human_castes import Humans
 class Killer(Humans):
     def special_ability(self, enemy_fighter):
         self.up_point(20)
-        enemy_fighter.health -= 80
-        enemy_fighter.energy -= 30
-        print(f'{self.name} простреливает колени {enemy_fighter.name}')
-        print(
-            f'У {enemy_fighter.name} осталось {int(enemy_fighter.health)} очков жизни')
-        print()
+        damage_defence = 0
+        damage_strenght = 0
+        damage_energy = 30
+        damage_health = self.strenght*2
+        self.print_for_special_ability_killer(enemy_fighter)
+        enemy_fighter.take_damage(
+            damage_defence, damage_strenght, damage_energy, damage_health)
 
-    def attack_right_leg(self, enemy_fighter):
-        self.up_point(4)
-        enemy_fighter.health -= (self.strenght*0.8)
-        print(f'{self.name} нанёс/нанесла удар правой ногой')
-        print(
-            f'У {enemy_fighter.name} осталось {int(enemy_fighter.health)} очков жизни')
-        print()
+    def attack_left_arm(self, enemy_fighter):
+        self.up_point(1)
+        self.health += 5
+        damage_defence = 0
+        damage_strenght = 0
+        damage_energy = 0
+        damage_health = self.strenght*0.4
+        self.print_for_attack_left_arm()
+        enemy_fighter.take_damage(
+            damage_defence, damage_strenght, damage_energy, damage_health)
+
+    def print_for_special_ability_killer(self, enemy_fighter):
+        print(f'{self.name} простреливает колени сопернику {enemy_fighter.name}')
