@@ -13,38 +13,33 @@ def bubble_sort(list_of_values):
     return list_of_values
 
 
-def split_list(list):
-    if len(list) == 1:
+def merge_sort(list):
+    n = len(list)
+    if n < 2:
         return list
 
-    d = len(list) // 2
-    left = split_list(list[:d])
-    right = split_list(list[d:])
+    left = merge_sort(list[:n//2])
+    right = merge_sort(list[n//2:n])
 
-    return merge(left, right)
-
-
-def merge(left, right):
-    i, j, new_list = 0, 0, []
-    while True:
-        if left[i] < right[j]:
+    i = j = 0
+    new_list = []
+    while i < len(left) or j < len(right):
+        if not i < len(left):
+            new_list.append(right[j])
+            j += 1
+        elif not j < len(right):
             new_list.append(left[i])
             i += 1
-            if i == len(left):
-                new_list.extend(right[j:])
-                break
-
+        elif left[i] < right[j]:
+            new_list.append(left[i])
+            i += 1
         else:
             new_list.append(right[j])
             j += 1
-            if j == len(right):
-                new_list.extend(left[i:])
-                break
-
     return new_list
 
 
 list_of_values = [int(input()) for _ in range(
     int(input('How many elements are in the array? ')))]
 print(f'Bubble sort: {bubble_sort(list_of_values)}')
-print(f'Merge sort: {split_list(list_of_values)}')
+print(f'Merge sort: {merge_sort(list_of_values)}')
