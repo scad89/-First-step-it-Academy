@@ -1,9 +1,8 @@
 def delete_double_elements(list):
-    new_list = []
+    new_set = set()
     for i in list:
-        if i not in new_list:
-            new_list.append(i)
-    return new_list
+        new_set.add(i)
+    return new_set
 
 
 list_of_values = [int(input()) for _ in range(
