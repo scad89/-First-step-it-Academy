@@ -3,29 +3,27 @@ from Mages_castes import Mages
 
 
 class Prophet(Mages):
+    def _up_attributes_prophet(self, value_strenght, value_energy, value_health):
+        self.strenght += (value_strenght+self.elixir*0.05)
+        self.energy += value_energy
+        self.health += (value_health+self.elixir*0.12)
+
     def special_ability(self, enemy_fighter):
         self.up_point(20)
-        self.strenght += 15
-        self.health += 100
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = 0
+        self._up_attributes_prophet(23, 0, 100)
         self.print_for_special_ability_necromancer_prophet()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, 0)
 
     def attack_right_arm(self, enemy_fighter):
         self.up_point(2)
         self.health += 10
         self.energy += 4
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.4
+        self._up_attributes_prophet(0, 4, 10)
         self.print_for_attack_right_arm()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.4)
 
     def print_for_special_ability_necromancer_prophet(self):
         print(f'{self.name} использует восстановление и увеличение силы')
+
+
+prophet = Prophet('Пророк', 240, 140, 95, 'Волшебный посох', 2700, 50)

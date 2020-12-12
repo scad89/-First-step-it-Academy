@@ -11,94 +11,59 @@ class Fighters:
     def up_point(self, count_points):
         self.points += count_points
 
-    def __drop_energy(self, count):
+    def _drop_energy(self, count):
         self.energy -= count
-        if 25 < self.energy < 40:
-            self.strenght -= (self.strenght*0.05)
+        if 35 < self.energy < 45:
+            self.strenght -= (self.strenght*0.01)
             self.print_for_drop_energy_5()
-        elif 10 < self.energy < 24:
-            self.strenght -= (self.strenght*0.05)
+        elif 20 < self.energy < 30:
+            self.strenght -= (self.strenght*0.02)
             self.print_for_drop_energy_10()
-        elif self.energy < 9:
-            self.strenght -= (self.strenght*0.05)
-            self.print_for_drop_energy_10()
+        elif 0 < self.energy < 10:
+            self.strenght -= (self.strenght*0.03)
+            self.print_for_drop_energy_15()
 
     def attack_left_arm(self, enemy_fighter):
         self.up_point(1)
-        self.__drop_energy(1)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.3
+        self._drop_energy(1)
         self.print_for_attack_left_arm()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.3)
 
     def attack_right_arm(self, enemy_fighter):
         self.up_point(2)
-        self.__drop_energy(2)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.5
+        self._drop_energy(2)
         self.print_for_attack_right_arm()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.5)
 
     def attack_left_leg(self, enemy_fighter):
         self.up_point(3)
-        self.__drop_energy(3)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.4
+        self._drop_energy(3)
         self.print_for_attack_left_leg()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.4)
 
     def attack_right_leg(self, enemy_fighter):
         self.up_point(4)
-        self.__drop_energy(4)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.6
+        self._drop_energy(4)
         self.print_for_attack_right_leg()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.6)
 
     def attack_knee_blow(self, enemy_fighter):
         self.up_point(5)
-        self.__drop_energy(4)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.9
+        self._drop_energy(4)
         self.print_for_attack_knee_blow()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.9)
 
     def attack_headbutt(self, enemy_fighter):
         self.up_point(5)
-        self.__drop_energy(3)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.7
+        self._drop_energy(3)
         self.print_for_attack_headbutt()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.7)
 
     def attack_ammo(self, enemy_fighter):
         self.up_point(8)
-        self.__drop_energy(10)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*1.3
+        self._drop_energy(10)
         self.print_for_attack_ammo()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*1.3)
 
     def print_for_drop_energy_5(self):
         print(f'У {self.name} атака снижена на 5%')

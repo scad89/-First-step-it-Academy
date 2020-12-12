@@ -11,35 +11,33 @@ class Humans(Fighters):
         self.health = health
         self.points = 0
         self.armor = self.points
-        self.flag_up_armor = True
-        self.flag_up_strengh = True
+        self._flag_up_armor = True
+        self._flag_up_strengh = True
+
+    def _up_strenght_human(self, value_strenght):
+        self.strenght += (value_strenght+(self.energy*2))
 
     def up_armor_human(self):
-        if self.health < 300 and self.flag_up_armor == True:
+        if self.health < 400 and self._flag_up_armor == True:
             self.defence += self.armor
-            self.flag_up_armor = False
+            self._flag_up_armor = False
             self.print_for_up_armor_human()
 
     def up_strenght(self):
-        if self.health < 100 and self.flag_up_strengh == True:
-            self.strenght += 80
-            self.flag_up_strengh = False
+        if self.health < 400 and self._flag_up_strengh == True:
+            self._up_strenght_human(150)
+            self._flag_up_strengh = False
             self.print_for_up_strenght()
 
     def attack_right_leg(self, enemy_fighter):
         self.up_point(5)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.8
         self.print_for_attack_right_leg()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.8)
 
     def print_for_up_armor_human(self):
         print(f'Броня {self.name} повышена на {self.points} очков')
         print()
 
     def print_for_up_strenght(self):
-        print(f'Атака {self.name} увеличина на 80 единиц')
+        print(f'Атака {self.name} увеличина')
         print()

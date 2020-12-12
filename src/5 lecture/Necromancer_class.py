@@ -3,6 +3,9 @@ from Mages_castes import Mages
 
 
 class Necromancer(Mages):
+    def _up_defence_necromancer(self, value_defence):
+        self.defence += (value_defence+self.elixir*0.1)
+
     def special_ability(self, enemy_fighter):
         skill = input(
             f'Вызвать голема или наложить заклятие на {enemy_fighter.name}? Сдела выбор 1 или 2: ')
@@ -13,33 +16,18 @@ class Necromancer(Mages):
 
     def golem(self, enemy_fighter):
         self.up_point(20)
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*2.2
         self.print_for_special_ability_necromancer_golem(enemy_fighter)
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*2.2)
 
     def iron_maiden(self, enemy_fighter):
-        damage_defence = 20
-        damage_strenght = 20
-        damage_energy = 30
-        damage_health = 0
         self.print_for_special_ability_necromancer_golem_ironmaiden()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(20, 20, 30, 0)
 
     def attack_left_arm(self, enemy_fighter):
         self.up_point(1)
-        self.defence += 8
-        damage_defence = 0
-        damage_strenght = 0
-        damage_energy = 0
-        damage_health = self.strenght*0.3
+        self._up_defence_necromancer(8)
         self.print_for_attack_left_arm()
-        enemy_fighter.take_damage(
-            damage_defence, damage_strenght, damage_energy, damage_health)
+        enemy_fighter.take_damage(0, 0, 0, self.strenght*0.3)
 
     def print_for_special_ability_necromancer_golem(self, enemy_fighter):
         print(
@@ -47,3 +35,7 @@ class Necromancer(Mages):
 
     def print_for_special_ability_necromancer_golem_ironmaiden(self):
         print(f'{self.name} использовал заклинание "Iron Maiden"')
+
+
+necromancer = Necromancer('Некромант', 280, 70, 95,
+                          'Костянной посох', 3000, 50)
