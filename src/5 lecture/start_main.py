@@ -16,7 +16,7 @@ from prophet_class import prophet
 from killer_class import killer
 from cyborg_class import cyborg
 from paladin_class import paladin
-# import random
+import random
 
 
 def check_finish(fighter):
@@ -68,13 +68,13 @@ def kombat(left_fighter, right_fighter):
     list_action = ['attack_left_arm', 'attack_right_arm', 'attack_left_leg',
                    'attack_right_leg', 'attack_knee_blow', 'attack_headbutt', 'attack_ammo', 'special_ability']
     while not check_finish(left_fighter) and not check_finish(right_fighter):
-        #         random.shuffle(list_action)
+        random.shuffle(list_action)
         check_special_skills_castes(left_fighter)
         print(f'Введите число (0-7), чтобы атаковать {right_fighter.name}: ')
         action_left_fighter = check_num_for_action()
         getattr(left_fighter, list_action[action_left_fighter])(right_fighter)
         check_special_skills_castes(right_fighter)
-#        random.shuffle(list_action)
+        random.shuffle(list_action)
         print(f'Введите число (0-7), чтобы атаковать {left_fighter.name}: ')
         action_right_fighter = check_num_for_action()
         getattr(right_fighter, list_action[action_right_fighter])(left_fighter)
