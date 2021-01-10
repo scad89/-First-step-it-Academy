@@ -6,3 +6,11 @@ src/5 lecture/fighter_castes.py
 src/5 lecture/fighter_classes.py
 test4.py
 src/5 lecture/tests/main_sample_for_test.py
+src/5 lecture/tests/Human_castes_test.py
+src/5 lecture/Аrchmage_class.py
+src/5 lecture/tests/Knight_class_test.py
+src/5 lecture/tests/Monk_class_test.py
+src/5 lecture/tests/new_test_all.py
+src/5 lecture/Аrchmage_class.py
+src/5 lecture/tests/start_main_test.py
+src/5 lecture/tests/test_main_fighter.py
