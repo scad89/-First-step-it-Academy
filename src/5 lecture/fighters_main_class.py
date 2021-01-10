@@ -1,3 +1,6 @@
+from abc import ABCMeta, abstractmethod
+
+
 class Fighters:
     def __init__(self, name, strenght, defence, energy, ammo, health):
         self.name = name
@@ -14,14 +17,28 @@ class Fighters:
     def _drop_energy(self, count):
         self.energy -= count
         if 35 < self.energy < 45:
-            self.strenght -= (self.strenght*0.01)
             self.print_for_drop_energy_5()
         elif 20 < self.energy < 30:
-            self.strenght -= (self.strenght*0.02)
             self.print_for_drop_energy_10()
         elif 0 < self.energy < 10:
-            self.strenght -= (self.strenght*0.03)
             self.print_for_drop_energy_15()
+
+    def _get_drop_strenght(self, perc):
+        drop_strenght = self.strenght * perc
+        self.strenght = self.strenght - drop_strenght
+        return self.strenght
+
+    def print_for_drop_energy_5(self):
+        self._get_drop_strenght(0.01)
+        self._print_for_drop_energy(1)
+
+    def print_for_drop_energy_10(self):
+        self._get_drop_strenght(0.02)
+        self._print_for_drop_energy(2)
+
+    def print_for_drop_energy_15(self):
+        self._get_drop_strenght(0.03)
+        self._print_for_drop_energy(3)
 
     def attack_left_arm(self, enemy_fighter):
         self.up_point(1)
@@ -65,35 +82,40 @@ class Fighters:
         self.print_for_attack_ammo()
         enemy_fighter.take_damage(0, 0, 0, self.strenght*1.3)
 
-    def print_for_drop_energy_5(self):
-        print(f'У {self.name} атака снижена на 5%')
+    def _print_for_drop_energy(self, perc):
+        print(f'У {self.name} атака снижена на {perc}%')
 
-    def print_for_drop_energy_10(self):
-        print(f'У {self.name} атака снижена на 10%')
-
-    def print_for_drop_energy_15(self):
-        print(f'У {self.name} атака снижена на 15%')
+    def print_for_attack_all(self, type_attack):
+        print(f'{self.name} нанёс/нанесла удар {type_attack}')
 
     def print_for_attack_left_arm(self):
-        print(f'{self.name} нанёс/нанесла удар левой рукой')
+        self.print_for_attack_all('левой рукой')
 
     def print_for_attack_right_arm(self):
-        print(f'{self.name} нанёс/нанесла удар правой рукой')
+        self.print_for_attack_all('правой рукой')
 
     def print_for_attack_left_leg(self):
-        print(f'{self.name} нанёс/нанесла удар левой ногой')
+        self.print_for_attack_all('левой ногой')
 
     def print_for_attack_right_leg(self):
-        print(f'{self.name} нанёс/нанесла удар правой ногой')
+        self.print_for_attack_all('правой ногой')
 
     def print_for_attack_knee_blow(self):
-        print(f'{self.name} нанёс/нанесла удар коленом')
+        self.print_for_attack_all('удар коленом')
 
     def print_for_attack_headbutt(self):
-        print(f'{self.name} нанёс/нанесла удар головой')
+        self.print_for_attack_all('удар головой')
 
     def print_for_attack_ammo(self):
-        print(f'{self.name} использовал/использовала своё оружие, {self.ammo}')
+        self.print_for_attack_all(
+            'использовал/использовала своё оружие, {self.ammo}')
+
+    @abstractmethod
+    def special_ability(self):
+        pass
+
+    def print_for_special_ability(self, type_attack_special_ability):
+        print(f'{self.name} {type_attack_special_ability}')
 
     def take_damage(self, damage_defence, damage_strenght, damage_energy, damage_health):
         self.defence = self.defence - damage_defence

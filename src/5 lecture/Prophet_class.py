@@ -1,5 +1,5 @@
 from fighters_main_class import Fighters
-from Mages_castes import Mages
+from mages_castes import Mages
 
 
 class Prophet(Mages):
@@ -11,7 +11,8 @@ class Prophet(Mages):
     def special_ability(self, enemy_fighter):
         self.up_point(20)
         self._up_attributes_prophet(23, 0, 100)
-        self.print_for_special_ability_necromancer_prophet()
+        self.print_for_special_ability(
+            'использует восстановление и увеличение силы')
         enemy_fighter.take_damage(0, 0, 0, 0)
 
     def attack_right_arm(self, enemy_fighter):
@@ -21,9 +22,6 @@ class Prophet(Mages):
         self._up_attributes_prophet(0, 4, 10)
         self.print_for_attack_right_arm()
         enemy_fighter.take_damage(0, 0, 0, self.strenght*0.4)
-
-    def print_for_special_ability_necromancer_prophet(self):
-        print(f'{self.name} использует восстановление и увеличение силы')
 
 
 prophet = Prophet('Пророк', 240, 140, 95, 'Волшебный посох', 2700, 50)

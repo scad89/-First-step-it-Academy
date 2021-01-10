@@ -1,5 +1,5 @@
 from fighters_main_class import Fighters
-from Creatures_castes import Creatures
+from creatures_castes import Creatures
 
 
 class Cyborg(Creatures):
@@ -12,7 +12,7 @@ class Cyborg(Creatures):
     def special_ability(self, enemy_fighter):
         self.up_point(20)
         self._up_attributes_cyborg(100, 15, 0, 20)
-        self.print_for_special_ability_cyborg()
+        self.print_for_special_ability('использовал наноброню')
         enemy_fighter.take_damage(0, 0, 0, 0)
 
     def attack_knee_blow(self, enemy_fighter):
@@ -20,9 +20,6 @@ class Cyborg(Creatures):
         self._up_attributes_cyborg(0, 0, 60, 0)
         self.print_for_attack_knee_blow()
         enemy_fighter.take_damage(25, 5, 6, self.strenght*0.85)
-
-    def print_for_special_ability_cyborg(self):
-        print(f'{self.name} использовал наноброню')
 
 
 cyborg = Cyborg('Киборг', 300, 125, 65, 'Наноброня', 3600, 200)

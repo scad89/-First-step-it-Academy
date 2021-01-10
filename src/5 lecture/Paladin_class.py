@@ -1,5 +1,5 @@
 from fighters_main_class import Fighters
-from Human_castes import Humans
+from human_castes import Humans
 
 
 class Paladin(Humans):
@@ -11,7 +11,8 @@ class Paladin(Humans):
     def special_ability(self, enemy_fighter):
         self.up_point(20)
         self._up_attributes_paladin(10, 20, 0)
-        self.print_for_special_ability_paladin(enemy_fighter)
+        self.print_for_special_ability(
+            f'вызвал ауру и нанёс урон {enemy_fighter.name}')
         enemy_fighter.take_damage(0, 0, 0, self.strenght*2.5)
 
     def attack_right_arm(self, enemy_fighter):
@@ -20,9 +21,6 @@ class Paladin(Humans):
         self.health += 50
         self.print_for_attack_right_arm()
         enemy_fighter.take_damage(13, 4, 0, self.strenght*0.4)
-
-    def print_for_special_ability_paladin(self, enemy_fighter):
-        print(f'{self.name} вызвал ауру и нанёс урон {enemy_fighter.name}')
 
 
 paladin = Paladin('Паладин', 300, 130, 70, 'Святой посох', 3300)

@@ -1,5 +1,5 @@
 from fighters_main_class import Fighters
-from Human_castes import Humans
+from human_castes import Humans
 
 
 class Knight(Humans):
@@ -8,7 +8,8 @@ class Knight(Humans):
 
     def special_ability(self, enemy_fighter):
         self.up_point(20)
-        self.print_for_special_ability_knight(enemy_fighter)
+        self.print_for_special_ability(
+            f'проткнул копьём {enemy_fighter.name}')
         enemy_fighter.take_damage(0, 0, 0, self.strenght*2)
 
     def attack_headbutt(self, enemy_fighter):
@@ -16,9 +17,6 @@ class Knight(Humans):
         self._up_strenght_knight(5)
         self.print_for_attack_headbutt()
         enemy_fighter.take_damage(10, 0, 0, self.strenght*0.8)
-
-    def print_for_special_ability_knight(self, enemy_fighter):
-        print(f'{self.name} проткнул копьём {enemy_fighter.name}')
 
 
 knight = Knight('Рыцарь', 200, 150, 70, 'Меч', 3600)

@@ -1,5 +1,5 @@
 from fighters_main_class import Fighters
-from Human_castes import Humans
+from human_castes import Humans
 
 
 class Berserker(Humans):
@@ -9,7 +9,8 @@ class Berserker(Humans):
 
     def special_ability(self, enemy_fighter):
         self.up_point(20)
-        self.print_for_special_ability_berserker(enemy_fighter)
+        self.print_for_special_ability(
+            f'наносит удар топором {enemy_fighter.name}')
         enemy_fighter.take_damage(0, 0, 20, self.strenght*2)
 
     def attack_ammo(self, enemy_fighter):
@@ -17,10 +18,6 @@ class Berserker(Humans):
         self._up_strenght_and_energy(15, 10)
         self.print_for_attack_ammo()
         enemy_fighter.take_damage(0, 0, 0, self.strenght*1.7)
-
-    def print_for_special_ability_berserker(self, enemy_fighter):
-        print(
-            f'{self.name} наносит удар топором {enemy_fighter.name}')
 
 
 berserker = Berserker('Берсерк', 320, 60, 70, 'Два меча', 3600)

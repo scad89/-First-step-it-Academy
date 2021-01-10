@@ -1,5 +1,5 @@
 from fighters_main_class import Fighters
-from Human_castes import Humans
+from human_castes import Humans
 
 
 class Monk(Humans):
@@ -11,7 +11,8 @@ class Monk(Humans):
 
     def special_ability(self, enemy_fighter):
         self._up_attributes_monk(10, 10, 100, 0)
-        self.print_for_special_ability_monk()
+        self.print_for_special_ability(
+            'прочитал молитву и увеличил свои атрибуты')
         enemy_fighter.take_damage(0, 0, 0, 0)
 
     def attack_left_arm(self, enemy_fighter):
@@ -25,9 +26,6 @@ class Monk(Humans):
         self._up_attributes_monk(0, 0, 0, 5)
         self.print_for_attack_right_arm()
         enemy_fighter.take_damage(7, 0, 2, self.strenght*0.6)
-
-    def print_for_special_ability_monk(self):
-        print(f'{self.name} прочитал молитву и увеличил свои атрибуты')
 
 
 monk = Monk('Монах', 290, 60, 70, 'Боевое кадило', 3000)

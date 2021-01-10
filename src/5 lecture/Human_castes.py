@@ -3,12 +3,7 @@ from fighters_main_class import Fighters
 
 class Humans(Fighters):
     def __init__(self, name, strenght, defence, energy, ammo, health):
-        self.name = name
-        self.strenght = strenght
-        self.defence = defence
-        self.energy = energy
-        self.ammo = ammo
-        self.health = health
+        super().__init__(name, strenght, defence, energy, ammo, health)
         self.points = 0
         self.armor = self.points
         self._flag_up_armor = True
