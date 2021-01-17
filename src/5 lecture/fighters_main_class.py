@@ -86,7 +86,7 @@ class Fighters:
         print(f'У {self.name} атака снижена на {perc}%')
 
     def print_for_attack_all(self, type_attack):
-        print(f'{self.name} нанёс/нанесла удар {type_attack}')
+        print(f'{self.name} атаковал(а) {type_attack}')
 
     def print_for_attack_left_arm(self):
         self.print_for_attack_all('левой рукой')
@@ -101,14 +101,14 @@ class Fighters:
         self.print_for_attack_all('правой ногой')
 
     def print_for_attack_knee_blow(self):
-        self.print_for_attack_all('удар коленом')
+        self.print_for_attack_all('коленом')
 
     def print_for_attack_headbutt(self):
-        self.print_for_attack_all('удар головой')
+        self.print_for_attack_all('головой')
 
     def print_for_attack_ammo(self):
         self.print_for_attack_all(
-            'использовал/использовала своё оружие, {self.ammo}')
+            f'использовал/использовала своё оружие, {self.ammo}')
 
     @abstractmethod
     def special_ability(self):
